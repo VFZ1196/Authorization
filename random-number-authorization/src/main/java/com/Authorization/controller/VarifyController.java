@@ -1,7 +1,5 @@
 package com.Authorization.controller;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +19,6 @@ public class VarifyController {
 	
 	@Autowired
 	VarifyRepository  varifyRepo;
-
 	
 	@GetMapping("/varify/{id}")
 	public Varify getAfterVarification(@PathVariable Long id) {
@@ -33,11 +30,13 @@ public class VarifyController {
 		return service.add(varify);
 	}
 	
-	@PostMapping("/varify1/{id}/{number}")
-	public Varify varNumber(@PathVariable Long id,@PathVariable Long number) {
-		System.out.println("number" + number);
-		System.out.println("id" + id);
-		if(id==number) {
+	@PostMapping("/varify1/{id}/{num}")
+	public Varify varNumber(@PathVariable Long id,@PathVariable Long num) {
+		Varify var = varifyRepo.findById(id).get();
+		System.out.println("This number is coming from postman-> " + num);
+		System.out.println("This number is coming from database by passing id in postman-> " + var.getNumber());
+		
+		if(num==var.getNumber()) {
 			System.out.println("Varification successful");
 		}else {
 			System.out.println("Unauthorised");

@@ -49,5 +49,12 @@ public class Varify {
 	public void setNumber(Long number) {
 		this.number = number;
 	}
+
+	@Override
+	public String toString() {
+		return "Varify [random=" + random + ", id=" + id + ", name=" + name + ", number=" + number + "]";
+	}
+	
+	
 	
 }
