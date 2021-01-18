@@ -29,14 +29,12 @@ public class VarifyController {
 	public Varify addNew(@RequestBody Varify varify) {
 		return service.add(varify);
 	}
-	
+	 
 	@PostMapping("/varify1/{id}/{num}")
 	public Varify varNumber(@PathVariable Long id,@PathVariable Long num) {
 		Varify var = varifyRepo.findById(id).get();
-		System.out.println("This number is coming from postman-> " + num);
-		System.out.println("This number is coming from database by passing id in postman-> " + var.getNumber());
-		
-		if(num==var.getNumber()) {
+		System.out.println(var);
+		if(num.equals(var.getNumber())) {
 			System.out.println("Varification successful");
 		}else {
 			System.out.println("Unauthorised");
